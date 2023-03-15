@@ -1,0 +1,31 @@
+{
+    "name": "buzzingpixel/mission-control-backend-core",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "ext-oauth": "*",
+        "ext-pdo": "*",
+        "ext-redis": "*"
+    },
+    "require-dev": {
+        "doctrine/coding-standard": "^11.0.0",
+        "filp/whoops": "^2.14",
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "phpstan/phpstan-strict-rules": "^1.5",
+        "squizlabs/php_codesniffer": "^3.6",
+        "symfony/var-dumper": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
+    },
+    "config": {
+        "bin-compat": "full",
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}
