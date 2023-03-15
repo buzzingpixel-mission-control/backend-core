@@ -1,0 +1,14 @@
+parameters:
+    paths:
+        - public/index.php
+        - config
+        - src
+    level: max
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+    excludes_analyse:
+    bootstrapFiles:
+
+includes:
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
