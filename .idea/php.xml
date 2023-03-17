@@ -34,6 +34,32 @@
       <path value="$PROJECT_DIR$/vendor/phpstan/phpstan-strict-rules" />
       <path value="$PROJECT_DIR$/vendor/phpstan/phpdoc-parser" />
       <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/crell/tukio" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/fig/event-dispatcher-util" />
+      <path value="$PROJECT_DIR$/vendor/buzzingpixel/container" />
+      <path value="$PROJECT_DIR$/vendor/mnapoli/silly" />
+      <path value="$PROJECT_DIR$/vendor/slim/slim" />
+      <path value="$PROJECT_DIR$/vendor/slim/psr7" />
+      <path value="$PROJECT_DIR$/vendor/php-di/invoker" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-server-middleware" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-server-handler" />
+      <path value="$PROJECT_DIR$/vendor/fig/http-message-util" />
+      <path value="$PROJECT_DIR$/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/qiq/qiq" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-escaper" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

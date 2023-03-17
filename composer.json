@@ -5,7 +5,15 @@
         "php": "^8.2",
         "ext-oauth": "*",
         "ext-pdo": "*",
-        "ext-redis": "*"
+        "ext-redis": "*",
+        "buzzingpixel/container": "^1.1",
+        "crell/tukio": "^1.4",
+        "mnapoli/silly": "^1.8",
+        "psr/container": "^2.0",
+        "psr/event-dispatcher": "^1.0",
+        "qiq/qiq": "^1.1",
+        "slim/psr7": "^1.6",
+        "slim/slim": "^4.11"
     },
     "require-dev": {
         "doctrine/coding-standard": "^11.0.0",
