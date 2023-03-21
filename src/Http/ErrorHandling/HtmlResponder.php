@@ -27,7 +27,7 @@ readonly class HtmlResponder implements Responder
 
         $templateEngine->setLayout(HtmlLayout::PATH);
 
-        $templateEngine->setView(path: __DIR__ . '/HtmlResponse');
+        $templateEngine->setView(path: HtmlResponse::PATH);
 
         $response = $this->responseFactory->createResponse(500);
 
