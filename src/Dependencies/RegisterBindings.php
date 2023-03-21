@@ -12,6 +12,7 @@ class RegisterBindings
     {
         RegisterBindingsCsrf::register(containerBindings: $containerBindings);
         RegisterBindingsEvents::register(containerBindings: $containerBindings);
+        RegisterBindingsLogging::register(containerBindings: $containerBindings);
         RegisterBindingsResponse::register(containerBindings: $containerBindings);
     }
 }
