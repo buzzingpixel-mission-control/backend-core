@@ -6,6 +6,7 @@ namespace MissionControlBackend;
 
 use MissionControlBackend\Cli\BootCliCommands;
 use MissionControlBackend\Http\BootHttpRoutes;
+use MissionControlBackend\Http\SlimHelpers\MissionControlCallableResolver;
 use Psr\Container\ContainerInterface;
 use Silly\Application;
 use Slim\Factory\AppFactory;
@@ -21,7 +22,18 @@ readonly class BootApplication
 
     public function buildHttpApplication(): BootHttpRoutes
     {
-        $app = AppFactory::create(container: $this->container);
+        $callableResolver = $this->container->get(
+            MissionControlCallableResolver::class,
+        );
+
+        assert(
+            $callableResolver instanceof MissionControlCallableResolver,
+        );
+
+        $app = AppFactory::create(
+            container: $this->container,
+            callableResolver: $callableResolver,
+        );
 
         $request = ServerRequestCreatorFactory::create()
             ->createServerRequestFromGlobals();

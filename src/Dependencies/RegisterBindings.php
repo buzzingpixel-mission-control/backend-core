@@ -14,5 +14,6 @@ class RegisterBindings
         RegisterBindingsEvents::register(containerBindings: $containerBindings);
         RegisterBindingsLogging::register(containerBindings: $containerBindings);
         RegisterBindingsResponse::register(containerBindings: $containerBindings);
+        RegisterBindingsSlim::register(containerBindings: $containerBindings);
     }
 }
