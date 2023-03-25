@@ -10,10 +10,12 @@ class RegisterBindings
 {
     public static function register(ContainerBindings $containerBindings): void
     {
-        RegisterBindingsCsrf::register(containerBindings: $containerBindings);
-        RegisterBindingsEvents::register(containerBindings: $containerBindings);
-        RegisterBindingsLogging::register(containerBindings: $containerBindings);
-        RegisterBindingsResponse::register(containerBindings: $containerBindings);
-        RegisterBindingsSlim::register(containerBindings: $containerBindings);
+        RegisterBindingsCli::register($containerBindings);
+        RegisterBindingsCsrf::register($containerBindings);
+        RegisterBindingsEvents::register($containerBindings);
+        RegisterBindingsLogging::register($containerBindings);
+        RegisterBindingsPhinx::register($containerBindings);
+        RegisterBindingsResponse::register($containerBindings);
+        RegisterBindingsSlim::register($containerBindings);
     }
 }

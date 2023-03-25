@@ -10,5 +10,9 @@ class RegisterEvents
 {
     public static function register(OrderedProviderInterface $provider): void
     {
+        $provider->addSubscriber(
+            RegisterCliCommands::class,
+            RegisterCliCommands::class,
+        );
     }
 }

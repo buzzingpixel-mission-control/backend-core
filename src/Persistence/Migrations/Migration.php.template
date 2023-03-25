@@ -1,0 +1,17 @@
+<?php
+
+declare(strict_types=1);
+
+use MissionControlBackend\Persistence\Migrations\ChangeMigration;
+
+/** @noinspection PhpUnused */
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace, Squiz.Classes.ClassFileName.NoMatch
+
+class $className extends ChangeMigration
+{
+    public function change(): void
+    {
+        // TODO: Implement $className::change()
+        dd('TODO: Implement $className::change()');
+    }
+}
