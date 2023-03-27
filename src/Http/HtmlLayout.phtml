@@ -26,5 +26,6 @@ $title ??= '';
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="h-full">
-{{= getContent() }}
+    <?php /** @phpstan-ignore-next-line */ ?>
+    <?= $this->getContent() ?>
 </body>

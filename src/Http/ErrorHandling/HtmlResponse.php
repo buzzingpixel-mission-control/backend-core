@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Http\ErrorHandling;
 
-class HtmlResponse
+interface HtmlResponse
 {
     public const PATH = __DIR__ . '/HtmlResponse';
 }

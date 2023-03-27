@@ -1,3 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+// phpcs:disable Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace
+// phpcs:disable Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore
+// phpcs:disable Generic.Files.InlineHTML.Found
+
+use Qiq\Template;
+use Qiq\Escape;
+
+/** @phpstan-ignore-next-line */
+assert($this instanceof Template);
+
+/** @var $this Template&Escape */
+
+/** @phpstan-ignore-next-line */
+?>
+
 <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="fixed inset-0 z-10 overflow-y-auto">
         <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -11,11 +30,13 @@
                         </div>
                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                             <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">
-                                {{h $this->title}}
+                                <?php /** @phpstan-ignore-next-line */ ?>
+                                <?= $this->h($this->title) ?>
                             </h3>
                             <div class="mt-2">
                                 <p class="text-sm text-gray-500">
-                                    {{h $this->content}}
+                                    <?php /** @phpstan-ignore-next-line */ ?>
+                                    <?= $this->h($this->content) ?>
                                 </p>
                             </div>
                         </div>
@@ -23,7 +44,8 @@
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                     <a
-                        href="{{h $this->homeUrl}}"
+                        <?php /** @phpstan-ignore-next-line */ ?>
+                        href="<?= $this->a($this->homeUrl) ?>"
                         type="button"
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                     >
