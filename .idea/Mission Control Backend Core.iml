@@ -39,6 +39,14 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/php-template-engine" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/php-cloneable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laminas/laminas-escaper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mrclay/props-dic" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mrclay/jsmin-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/pimple/pimple" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/minifier" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/buzzingpixel/minify-middleware" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/tubalmartin/cssmin" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/marcusschwarz/lesserphp" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/httpauth" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

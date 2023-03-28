@@ -14,5 +14,10 @@ class RegisterEvents
             RegisterCliCommands::class,
             RegisterCliCommands::class,
         );
+
+        $provider->addSubscriber(
+            RegisterHttpMiddleware::class,
+            RegisterHttpMiddleware::class,
+        );
     }
 }
