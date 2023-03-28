@@ -1,15 +1,17 @@
 <?php
 
+/** @noinspection PhpUndefinedVariableInspection */
+
 declare(strict_types=1);
 
 // phpcs:disable Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace
 // phpcs:disable Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore
 // phpcs:disable Generic.Files.InlineHTML.Found
 
-use Qiq\Template;
+use BuzzingPixel\Templating\TemplateEngine;
 
 /** @phpstan-ignore-next-line */
-assert($this instanceof Template);
+assert($this instanceof TemplateEngine);
 
 $title ??= '';
 
@@ -18,7 +20,9 @@ $title ??= '';
 <!doctype html>
 <html lang="en" class="h-full bg-gray-50">
 <head>
-    <title><?php if ($title !== '') : ?><?=$title?> | <?php endif; ?>Mission Control</title>
+    <title>
+        <?php if ($title !== '') : ?><?=$title?> | <?php endif; ?>Mission Control
+    </title>
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -26,6 +30,10 @@ $title ??= '';
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="h-full">
-    <?php /** @phpstan-ignore-next-line */ ?>
-    <?= $this->getContent() ?>
+    <?= $this->getSection('layoutContent') ?>
+    <?php if ($this->hasSection('react-script')) : ?>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+        <?= $this->getSection('react-script') ?>
+    <?php endif ?>
 </body>

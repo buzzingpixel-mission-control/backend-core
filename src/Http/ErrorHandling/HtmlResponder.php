@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Http\ErrorHandling;
 
+use BuzzingPixel\Templating\TemplateEngineFactory;
 use MissionControlBackend\CoreConfig;
-use MissionControlBackend\Http\HtmlLayout;
-use MissionControlBackend\Templating\TemplatingEngineFactory;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Exception\HttpNotFoundException;
@@ -17,17 +16,14 @@ readonly class HtmlResponder implements Responder
     public function __construct(
         private CoreConfig $config,
         private ResponseFactoryInterface $responseFactory,
-        private TemplatingEngineFactory $templatingEngineFactory,
+        private TemplateEngineFactory $templateEngineFactory,
     ) {
     }
 
     public function respond(Throwable $exception): ResponseInterface
     {
-        $templateEngine = $this->templatingEngineFactory->create();
-
-        $templateEngine->setLayout(HtmlLayout::PATH);
-
-        $templateEngine->setView(HtmlResponse::PATH);
+        $templateEngine = $this->templateEngineFactory->create()
+            ->templatePath(HtmlResponse::PATH);
 
         $response = $this->responseFactory->createResponse(500);
 
@@ -44,14 +40,10 @@ readonly class HtmlResponder implements Responder
             $content = "We couldn't find that page. Click the button to head back to the home page.";
         }
 
-        $templateEngine->addVariable('title', $title);
-
-        $templateEngine->addVariable('content', $content);
-
-        $templateEngine->addVariable(
-            'homeUrl',
-            $this->config->appUrl,
-        );
+        $templateEngine
+            ->addVar('title', $title)
+            ->addVar('content', $content)
+            ->addVar('homeUrl', $this->config->appUrl);
 
         $response->getBody()->write($templateEngine->render());
 

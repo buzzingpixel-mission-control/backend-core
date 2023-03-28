@@ -6,5 +6,5 @@ namespace MissionControlBackend\Http\ErrorHandling;
 
 interface HtmlResponse
 {
-    public const PATH = __DIR__ . '/HtmlResponse';
+    public const PATH = __DIR__ . '/HtmlResponse.phtml';
 }

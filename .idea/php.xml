@@ -9,7 +9,7 @@
   <component name="PHPCodeSnifferOptionsConfiguration">
     <option name="codingStandard" value="Custom" />
     <option name="customRuleset" value="$PROJECT_DIR$/phpcs.xml" />
-    <option name="extensions" value="php" />
+    <option name="extensions" value="php,phtml" />
     <option name="highlightLevel" value="WARNING" />
     <option name="showSniffs" value="true" />
     <option name="transferred" value="true" />
@@ -58,8 +58,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
-      <path value="$PROJECT_DIR$/vendor/qiq/qiq" />
-      <path value="$PROJECT_DIR$/vendor/laminas/laminas-escaper" />
       <path value="$PROJECT_DIR$/vendor/slim/csrf" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/robmorgan/phinx" />
@@ -70,6 +68,9 @@
       <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
       <path value="$PROJECT_DIR$/vendor/symfony/config" />
       <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/buzzingpixel/php-template-engine" />
+      <path value="$PROJECT_DIR$/vendor/spatie/php-cloneable" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-escaper" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

@@ -1,3 +1,3 @@
 <component name="DependencyValidationManager">
-  <scope name="PHP Project Files" pattern="file[Mission Control Backend Core]:src//*.php" />
+  <scope name="PHP Project Files" pattern="file[Mission Control Backend Core]:src//*.php||file[Mission Control Backend Core]:src//*.phtml" />
 </component>

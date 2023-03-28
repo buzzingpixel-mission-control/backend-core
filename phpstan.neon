@@ -3,6 +3,9 @@ parameters:
         - public/index.php
         - config
         - src
+    fileExtensions:
+        - php
+        - phtml
     level: max
     treatPhpDocTypesAsCertain: false
     ignoreErrors:
