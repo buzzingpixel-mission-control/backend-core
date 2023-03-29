@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Project Asset Compilation Files" pattern="file[Mission Control Backend Core]:src//*.phtml||file[Mission Control Backend Core]:assets/src//*" />
+</component>
