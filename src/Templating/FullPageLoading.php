@@ -6,5 +6,5 @@ namespace MissionControlBackend\Templating;
 
 interface FullPageLoading
 {
-    public const PATH = __DIR__ . '/FullPageLoading';
+    public const PATH = __DIR__ . '/FullPageLoading.phtml';
 }
