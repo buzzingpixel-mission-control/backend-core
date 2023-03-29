@@ -9,6 +9,8 @@ declare(strict_types=1);
 // phpcs:disable Generic.Files.InlineHTML.Found
 
 use BuzzingPixel\Templating\TemplateEngine;
+use MissionControlBackend\Templating\VendorCss;
+use MissionControlBackend\Templating\VendorJs;
 
 /** @phpstan-ignore-next-line */
 assert($this instanceof TemplateEngine);
@@ -27,13 +29,33 @@ $title ??= '';
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <?php if (VendorCss::hasVendorPaths()) : ?>
+        <?php foreach (VendorCss::vendorPaths() as $vendorPath) : ?>
+            <link
+                rel="stylesheet"
+                href="<?= $vendorPath ?>"
+            >
+        <?php endforeach
+
+ ?>
+    <?php endif ?>
+    <?php if ($this->hasSection('headContent')) : ?>
+        <?= $this->getSection('headContent') ?>
+    <?php endif ?>
 </head>
 <body class="h-full">
     <?= $this->getSection('layoutContent') ?>
-    <?php if ($this->hasSection('react-script')) : ?>
-        <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-        <?= $this->getSection('react-script') ?>
+    <?php if (VendorJs::hasVendorPaths()) : ?>
+        <?php foreach (VendorJs::vendorPaths() as $vendorPath) : ?>
+            <script
+                src="<?= $vendorPath ?>"
+                type="text/javascript"
+            ></script>
+        <?php endforeach
+
+ ?>
+    <?php endif ?>
+    <?php if ($this->hasSection('footContent')) : ?>
+        <?= $this->getSection('footContent') ?>
     <?php endif ?>
 </body>

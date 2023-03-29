@@ -19,5 +19,10 @@ class RegisterEvents
             RegisterHttpMiddleware::class,
             RegisterHttpMiddleware::class,
         );
+
+        $provider->addSubscriber(
+            RegisterRoutes::class,
+            RegisterRoutes::class,
+        );
     }
 }

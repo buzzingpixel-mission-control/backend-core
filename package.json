@@ -1,0 +1,10 @@
+{
+    "name": "mission-control-backend",
+    "scripts": {
+        "build": "npx tailwindcss -i ./assets/src/main.css -o assets/dist/main.css --minify"
+    },
+    "author": "TJ Draper",
+    "dependencies": {
+        "tailwindcss": "^3.2.7"
+    }
+}

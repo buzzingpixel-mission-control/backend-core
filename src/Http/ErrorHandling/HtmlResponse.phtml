@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 use BuzzingPixel\Templating\TemplateEngine;
 use MissionControlBackend\Http\HtmlLayout;
+use MissionControlBackend\Templating\McBackendCssJsPaths;
+use MissionControlBackend\Templating\VendorCss;
 
 /** @phpstan-ignore-next-line */
 assert($this instanceof TemplateEngine);
@@ -24,6 +26,8 @@ assert(is_string($content));
 assert(is_string($homeUrl));
 
 $this->extends(HtmlLayout::PATH);
+
+VendorCss::addVendorPath(McBackendCssJsPaths::CSS);
 
 ?>
 
