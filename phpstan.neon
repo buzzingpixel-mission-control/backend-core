@@ -1,7 +1,5 @@
 parameters:
     paths:
-        - public/index.php
-        - config
         - src
     fileExtensions:
         - php

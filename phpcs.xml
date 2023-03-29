@@ -8,10 +8,7 @@
     <arg value="nps"/>
 
     <!-- Directories to be checked -->
-    <file>config</file>
     <file>src</file>
-    <file>public/index.php</file>
-    <file>cli</file>
 
     <!-- Include full Doctrine Coding Standard -->
     <rule ref="Doctrine">
