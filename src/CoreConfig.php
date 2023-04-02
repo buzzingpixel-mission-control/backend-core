@@ -11,7 +11,9 @@ readonly class CoreConfig
         public string $apiUrl,
         public string $authUrl,
         public string $accountUrl,
-        public bool $devMode = false,
+        public string $authHost,
+        public string $accountHost,
+        public bool $useWhoopsErrorHandling,
     ) {
     }
 }

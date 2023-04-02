@@ -11,10 +11,16 @@ use function assert;
 
 readonly class BootContainer
 {
+    public function __construct(private CoreConfig $coreConfig)
+    {
+    }
+
     public function buildContainer(
         callable|null $register = null,
     ): BootEvents {
         $containerBindings = new ContainerBindings();
+
+        $containerBindings->addBinding(CoreConfig::class, $this->coreConfig);
 
         RegisterBindings::register($containerBindings);
 
@@ -25,8 +31,8 @@ readonly class BootContainer
         $constructorConfigs = $containerBindings->constructorParamConfigs();
 
         $container = new Container(
-            bindings: $containerBindings->bindings(),
-            constructorParamConfigs: $constructorConfigs,
+            $containerBindings->bindings(),
+            $constructorConfigs,
         );
 
         $bootEventRegistration = $container->get(BootEvents::class);

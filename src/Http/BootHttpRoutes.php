@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Http;
 
+use MissionControlBackend\CoreConfig;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;
@@ -12,14 +13,14 @@ readonly class BootHttpRoutes
 {
     public function __construct(
         private App $app,
+        private CoreConfig $coreConfig,
         private ServerRequestInterface $request,
         private EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
-    public function applyRoutes(
-        HttpRoutesConfig $routesConfig,
-    ): BootHttpMiddleware {
+    public function applyRoutes(): BootHttpMiddleware
+    {
         $request = $this->request;
 
         $currentServerHost = $request->getHeader(
@@ -31,10 +32,10 @@ readonly class BootHttpRoutes
         }
 
         $this->eventDispatcher->dispatch(match ($currentServerHost) {
-            $routesConfig->authHost => new AuthApplyRoutesEvent(
+            $this->coreConfig->authHost => new AuthApplyRoutesEvent(
                 $this->app,
             ),
-            $routesConfig->accountHost => new AccountApplyRoutesEvent(
+            $this->coreConfig->accountHost => new AccountApplyRoutesEvent(
                 $this->app,
             ),
             default => new ApiApplyRoutesEvent(

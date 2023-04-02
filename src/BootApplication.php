@@ -16,6 +16,7 @@ use Slim\Factory\ServerRequestCreatorFactory;
 readonly class BootApplication
 {
     public function __construct(
+        private CoreConfig $coreConfig,
         private ContainerInterface $container,
         private EventDispatcherInterface $eventDispatcher,
         private MissionControlCallableResolver $callableResolver,
@@ -34,6 +35,7 @@ readonly class BootApplication
 
         return new BootHttpRoutes(
             $app,
+            $this->coreConfig,
             $request,
             $this->eventDispatcher,
         );

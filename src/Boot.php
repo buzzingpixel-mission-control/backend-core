@@ -20,13 +20,13 @@ use const PHP_SAPI;
 
 readonly class Boot
 {
-    public function start(BootConfig $bootConfig): BootContainer
+    public function start(CoreConfig $coreConfig): BootContainer
     {
-        if ($bootConfig->useWhoopsErrorHandling) {
+        if ($coreConfig->useWhoopsErrorHandling) {
             $this->registerDevErrorHandling();
         }
 
-        return new BootContainer();
+        return new BootContainer($coreConfig);
     }
 
     private function registerDevErrorHandling(): void
