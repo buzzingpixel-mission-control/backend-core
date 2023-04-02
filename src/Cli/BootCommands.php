@@ -7,21 +7,20 @@ namespace MissionControlBackend\Cli;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Silly\Application;
 
-readonly class BootCliCommands
+readonly class BootCommands
 {
     public function __construct(
         private Application $app,
-        private BootCliRun $bootCliRun,
         private EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
-    public function applyCommands(): BootCliRun
+    public function applyCommands(): Run
     {
-        $this->eventDispatcher->dispatch(event: new ApplyCliCommandsEvent(
-            app: $this->app,
+        $this->eventDispatcher->dispatch(new ApplyCliCommandsEvent(
+            $this->app,
         ));
 
-        return $this->bootCliRun;
+        return new Run($this->app);
     }
 }

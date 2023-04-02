@@ -6,22 +6,20 @@ namespace MissionControlBackend\Http;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;
+use Slim\Factory\ServerRequestCreatorFactory;
 use Slim\ResponseEmitter;
 
 use function assert;
 
-readonly class BootEmitResponse
+readonly class Run
 {
-    public function __construct(
-        private App $app,
-        private ServerRequestInterface $request,
-    ) {
+    public function __construct(private App $app)
+    {
     }
 
-    public function emitResponse(): void
-    {
-        $response = $this->app->handle(request: $this->request);
-
+    public function runApplication(
+        ServerRequestInterface|null $request = null,
+    ): void {
         /** @phpstan-ignore-next-line */
         $responseEmitter = $this->app->getContainer()->get(
             ResponseEmitter::class,
@@ -29,6 +27,9 @@ readonly class BootEmitResponse
 
         assert($responseEmitter instanceof ResponseEmitter);
 
-        $responseEmitter->emit(response: $response);
+        $request ??= ServerRequestCreatorFactory::create()
+            ->createServerRequestFromGlobals();
+
+        $responseEmitter->emit($this->app->handle($request));
     }
 }

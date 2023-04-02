@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace MissionControlBackend\Events;
 
 use BuzzingPixel\Minify\MinifyMiddleware;
-use MissionControlBackend\Http\SetMiddlewareEvent;
+use MissionControlBackend\Http\ApplyMiddlewareEvent;
 
 class RegisterHttpMiddleware
 {
-    public function onSetMiddleware(SetMiddlewareEvent $event): void
+    public function onSetMiddleware(ApplyMiddlewareEvent $event): void
     {
-        $event->app->add(MinifyMiddleware::class);
+        $event->add(MinifyMiddleware::class);
     }
 }

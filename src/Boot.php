@@ -20,19 +20,17 @@ use const PHP_SAPI;
 
 readonly class Boot
 {
-    public function start(CoreConfig $config): BootContainer
+    public function start(BootConfig $bootConfig): BootContainer
     {
-        $this->registerDevErrorHandling(devMode: $config->devMode);
-
-        return new BootContainer(config: $config);
-    }
-
-    private function registerDevErrorHandling(bool $devMode = false): void
-    {
-        if (! $devMode) {
-            return;
+        if ($bootConfig->useWhoopsErrorHandling) {
+            $this->registerDevErrorHandling();
         }
 
+        return new BootContainer();
+    }
+
+    private function registerDevErrorHandling(): void
+    {
         ini_set('display_errors', '1');
         ini_set('display_startup_errors', '1');
         error_reporting(E_ALL);

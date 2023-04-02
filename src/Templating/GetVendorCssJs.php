@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace MissionControlBackend\Templating;
 
 use Composer\Autoload\ClassLoader;
+use MissionControlBackend\Http\ApplyRoutesEvent;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use ReflectionClass;
 use Slim\Exception\HttpNotFoundException;
-use Slim\Interfaces\RouteCollectorProxyInterface;
 
 use function dirname;
 use function file_exists;
@@ -18,9 +18,9 @@ use function pathinfo;
 
 class GetVendorCssJs
 {
-    public static function registerRoute(RouteCollectorProxyInterface $r): void
+    public static function registerRoute(ApplyRoutesEvent $event): void
     {
-        $r->get(
+        $event->get(
             '/vendor[/{segment1}[/{segment2}[/{segment3}[/{segment4}[/{segment5}[/{segment6}[/{segment7}[/{segment8}[/{segment9}[/{segment10}]]]]]]]]]]',
             self::class,
         );

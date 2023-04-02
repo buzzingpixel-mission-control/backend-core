@@ -4,24 +4,22 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Http;
 
-use MissionControlBackend\CoreConfig;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;
-
-use function assert;
 
 readonly class BootHttpRoutes
 {
     public function __construct(
         private App $app,
         private ServerRequestInterface $request,
+        private EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
     public function applyRoutes(
         HttpRoutesConfig $routesConfig,
-    ): BootHttpErrorHandling {
+    ): BootHttpMiddleware {
         $request = $this->request;
 
         $currentServerHost = $request->getHeader(
@@ -32,34 +30,21 @@ readonly class BootHttpRoutes
             $currentServerHost = $request->getHeader('HOST')[0] ?? null;
         }
 
-        /** @phpstan-ignore-next-line */
-        $eventDispatcher = $this->app->getContainer()->get(
-            EventDispatcherInterface::class,
-        );
-
-        assert($eventDispatcher instanceof EventDispatcherInterface);
-
-        $eventDispatcher->dispatch(event: match ($currentServerHost) {
-            $routesConfig->authHost => new AuthSetRoutesEvent(
-                routeCollector: $this->app,
+        $this->eventDispatcher->dispatch(match ($currentServerHost) {
+            $routesConfig->authHost => new AuthApplyRoutesEvent(
+                $this->app,
             ),
-            $routesConfig->accountHost => new AccountSetRoutesEvent(
-                routeCollector: $this->app,
+            $routesConfig->accountHost => new AccountApplyRoutesEvent(
+                $this->app,
             ),
-            default => new ApiSetRoutesEvent(
-                routeCollector: $this->app,
+            default => new ApiApplyRoutesEvent(
+                $this->app,
             ),
         });
 
-        /** @phpstan-ignore-next-line */
-        $config = $this->app->getContainer()->get(CoreConfig::class);
-
-        assert($config instanceof CoreConfig);
-
-        return new BootHttpErrorHandling(
-            app: $this->app,
-            config: $config,
-            request: $this->request,
+        return new BootHttpMiddleware(
+            $this->app,
+            $this->eventDispatcher,
         );
     }
 }

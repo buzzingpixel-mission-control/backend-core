@@ -7,21 +7,21 @@ namespace MissionControlBackend;
 use Crell\Tukio\OrderedProviderInterface;
 use MissionControlBackend\Events\RegisterEvents;
 
-readonly class BootEventRegistration
+readonly class BootEvents
 {
     public function __construct(
         private BootApplication $bootApplication,
-        private OrderedProviderInterface $provider,
+        private OrderedProviderInterface $eventProvider,
     ) {
     }
 
     public function registerEvents(
         callable|null $register = null,
     ): BootApplication {
-        RegisterEvents::register(provider: $this->provider);
+        RegisterEvents::register(provider: $this->eventProvider);
 
         if ($register !== null) {
-            $register($this->provider);
+            $register($this->eventProvider);
         }
 
         return $this->bootApplication;

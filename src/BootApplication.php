@@ -4,58 +4,50 @@ declare(strict_types=1);
 
 namespace MissionControlBackend;
 
-use MissionControlBackend\Cli\BootCliCommands;
+use MissionControlBackend\Cli\BootCommands;
 use MissionControlBackend\Http\BootHttpRoutes;
 use MissionControlBackend\Http\SlimHelpers\MissionControlCallableResolver;
 use Psr\Container\ContainerInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Silly\Application;
 use Slim\Factory\AppFactory;
 use Slim\Factory\ServerRequestCreatorFactory;
 
-use function assert;
-
 readonly class BootApplication
 {
-    public function __construct(private ContainerInterface $container)
-    {
+    public function __construct(
+        private ContainerInterface $container,
+        private EventDispatcherInterface $eventDispatcher,
+        private MissionControlCallableResolver $callableResolver,
+    ) {
     }
 
     public function buildHttpApplication(): BootHttpRoutes
     {
-        $callableResolver = $this->container->get(
-            MissionControlCallableResolver::class,
-        );
-
-        assert(
-            $callableResolver instanceof MissionControlCallableResolver,
-        );
-
         $app = AppFactory::create(
             container: $this->container,
-            callableResolver: $callableResolver,
+            callableResolver: $this->callableResolver,
         );
 
         $request = ServerRequestCreatorFactory::create()
             ->createServerRequestFromGlobals();
 
         return new BootHttpRoutes(
-            app: $app,
-            request: $request,
+            $app,
+            $request,
+            $this->eventDispatcher,
         );
     }
 
-    public function buildCliApplication(): BootCliCommands
+    public function buildCliApplication(): BootCommands
     {
-        $app = $this->container->get(Application::class);
-
-        assert($app instanceof Application);
+        $app = new Application('MissionControl Backend CLI');
 
         $app->useContainer(container: $this->container);
 
-        $bootCliCommands = $this->container->get(BootCliCommands::class);
-
-        assert($bootCliCommands instanceof BootCliCommands);
-
-        return $bootCliCommands;
+        return new BootCommands(
+            $app,
+            $this->eventDispatcher,
+        );
     }
 }

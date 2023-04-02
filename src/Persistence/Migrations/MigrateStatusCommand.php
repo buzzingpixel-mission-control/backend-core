@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Persistence\Migrations;
 
+use MissionControlBackend\Cli\ApplyCliCommandsEvent;
 use Phinx\Console\Command\Status;
-use Silly\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 readonly class MigrateStatusCommand
 {
-    public static function register(Application $app): void
+    public static function register(ApplyCliCommandsEvent $event): void
     {
-        $app->command('migrate:status', self::class);
+        $event->addCommand('migrate:status', self::class);
     }
 
     public function __construct(

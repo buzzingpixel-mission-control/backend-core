@@ -4,25 +4,25 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Events;
 
-use MissionControlBackend\Http\AccountSetRoutesEvent;
-use MissionControlBackend\Http\ApiSetRoutesEvent;
-use MissionControlBackend\Http\AuthSetRoutesEvent;
+use MissionControlBackend\Http\AccountApplyRoutesEvent;
+use MissionControlBackend\Http\ApiApplyRoutesEvent;
+use MissionControlBackend\Http\AuthApplyRoutesEvent;
 use MissionControlBackend\Templating\GetVendorCssJs;
 
 class RegisterRoutes
 {
-    public function onApplyAccountRoutes(AccountSetRoutesEvent $event): void
+    public function onApplyAccountRoutes(AccountApplyRoutesEvent $event): void
     {
-        GetVendorCssJs::registerRoute($event->routeCollector);
+        GetVendorCssJs::registerRoute($event);
     }
 
-    public function onApplyApiRoutes(ApiSetRoutesEvent $event): void
+    public function onApplyApiRoutes(ApiApplyRoutesEvent $event): void
     {
-        GetVendorCssJs::registerRoute($event->routeCollector);
+        GetVendorCssJs::registerRoute($event);
     }
 
-    public function onApplyAuthRoutes(AuthSetRoutesEvent $event): void
+    public function onApplyAuthRoutes(AuthApplyRoutesEvent $event): void
     {
-        GetVendorCssJs::registerRoute($event->routeCollector);
+        GetVendorCssJs::registerRoute($event);
     }
 }

@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Persistence\Migrations;
 
-use MissionControlBackend\Events\StoppableEvent;
-
-class AddMigrationPathsEvent extends StoppableEvent
+readonly class AddMigrationPathsEvent
 {
     public function __construct(
-        public readonly MigrationPathCollection $paths,
+        public MigrationPathCollection $paths,
     ) {
     }
 }

@@ -14,9 +14,9 @@ class RegisterCliCommands
 {
     public function onApplyCommands(ApplyCliCommandsEvent $event): void
     {
-        MigrateCreateCommand::register($event->app);
-        MigrateRollbackCommand::register($event->app);
-        MigrateStatusCommand::register($event->app);
-        MigrateUpCommand::register($event->app);
+        MigrateCreateCommand::register($event);
+        MigrateRollbackCommand::register($event);
+        MigrateStatusCommand::register($event);
+        MigrateUpCommand::register($event);
     }
 }

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Persistence\Migrations;
 
-use MissionControlBackend\Events\StoppableEvent;
-
-class ApplyDbConfigEvent extends StoppableEvent
+class ApplyDbConfigEvent
 {
     public function __construct(public DbConfig|null $config = null)
     {

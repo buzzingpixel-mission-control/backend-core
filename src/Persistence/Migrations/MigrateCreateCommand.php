@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Persistence\Migrations;
 
+use MissionControlBackend\Cli\ApplyCliCommandsEvent;
 use MissionControlBackend\Cli\Question;
 use MissionControlBackend\Utility\CaseConversion;
 use Phinx\Console\Command\Create;
-use Silly\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 readonly class MigrateCreateCommand
 {
-    public static function register(Application $app): void
+    public static function register(ApplyCliCommandsEvent $event): void
     {
-        $app->command('migrate:create', self::class);
+        $event->addCommand('migrate:create', self::class);
     }
 
     public function __construct(

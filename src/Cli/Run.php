@@ -6,13 +6,13 @@ namespace MissionControlBackend\Cli;
 
 use Silly\Application;
 
-readonly class BootCliRun
+readonly class Run
 {
     public function __construct(private Application $app)
     {
     }
 
-    public function run(): void
+    public function runApplication(): void
     {
         $this->app->run();
     }
