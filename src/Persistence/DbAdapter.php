@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MissionControlBackend\Persistence\Migrations;
+namespace MissionControlBackend\Persistence;
 
 use RuntimeException;
 

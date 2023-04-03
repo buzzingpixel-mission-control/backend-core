@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MissionControlBackend\Persistence\Migrations;
+namespace MissionControlBackend\Persistence;
 
 readonly class DbConfig
 {
@@ -13,8 +13,6 @@ readonly class DbConfig
         public string $user,
         public string $pass,
         public int $port,
-        public string $charset = 'utf8mb4',
-        public string $collation = 'utf8mb4_unicode_ci',
     ) {
     }
 }

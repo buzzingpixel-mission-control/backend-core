@@ -12,6 +12,7 @@ class RegisterBindings
     {
         RegisterBindingsCli::register($containerBindings);
         RegisterBindingsCsrf::register($containerBindings);
+        RegisterBindingsDatabase::register($containerBindings);
         RegisterBindingsEvents::register($containerBindings);
         RegisterBindingsLogging::register($containerBindings);
         RegisterBindingsPhinx::register($containerBindings);

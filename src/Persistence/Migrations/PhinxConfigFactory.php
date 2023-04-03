@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Persistence\Migrations;
 
+use MissionControlBackend\Persistence\DbConfig;
 use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use RuntimeException;
-
-use function implode;
 
 readonly class PhinxConfigFactory
 {
     public function __construct(
+        private DbConfig $dbConfig,
         private ContainerInterface $container,
         private EventDispatcherInterface $eventDispatcher,
     ) {
@@ -26,24 +25,10 @@ readonly class PhinxConfigFactory
             new AddMigrationPathsEvent($paths),
         );
 
-        $dbConfigEvent = new ApplyDbConfigEvent();
-
-        $this->eventDispatcher->dispatch($dbConfigEvent);
-
-        if ($dbConfigEvent->config === null) {
-            throw new RuntimeException(
-                implode(' ', [
-                    'You must listen for the event',
-                    ApplyDbConfigEvent::class,
-                    'and set up a DB Config',
-                ]),
-            );
-        }
-
         return new PhinxConfig(
             container: $this->container,
             paths: $paths,
-            dbConfig: $dbConfigEvent->config,
+            dbConfig: $this->dbConfig,
         );
     }
 }

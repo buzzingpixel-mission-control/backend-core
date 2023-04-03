@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Persistence\Migrations;
 
+use MissionControlBackend\Persistence\DbConfig;
 use Phinx\Config\Config;
 use Phinx\Config\ConfigInterface;
 use Psr\Container\ContainerInterface;
@@ -33,8 +34,6 @@ readonly class PhinxConfig implements ConfigInterface
                 'user' => $this->dbConfig->user,
                 'pass' => $this->dbConfig->pass,
                 'port' => $this->dbConfig->port,
-                'charset' => $this->dbConfig->charset,
-                'collation' => $this->dbConfig->collation,
             ],
         ];
     }
