@@ -18,5 +18,6 @@ class RegisterBindings
         RegisterBindingsPhinx::register($containerBindings);
         RegisterBindingsResponse::register($containerBindings);
         RegisterBindingsSlim::register($containerBindings);
+        RegisterClockBindings::register($containerBindings);
     }
 }
