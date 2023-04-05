@@ -30,6 +30,8 @@ readonly class BootHttpMiddleware
             $this->app,
         ));
 
+        $this->app->addBodyParsingMiddleware();
+
         return new Run($this->app);
     }
 
