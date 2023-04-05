@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace MissionControlBackend\Cli;
 
 use Silly\Application;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 readonly class Run
 {
@@ -12,8 +14,12 @@ readonly class Run
     {
     }
 
-    public function runApplication(): void
-    {
-        $this->app->run();
+    public function runApplication(
+        InputInterface|null $input = null,
+        OutputInterface|null $output = null,
+    ): void {
+        $this->app->setAutoExit(false);
+
+        $this->app->run($input, $output);
     }
 }

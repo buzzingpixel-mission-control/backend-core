@@ -35,12 +35,10 @@ readonly class BootContainer
             $constructorConfigs,
         );
 
-        $bootEventRegistration = $container->get(BootEvents::class);
+        $bootEvents = $container->get(BootEvents::class);
 
-        assert(
-            $bootEventRegistration instanceof BootEvents,
-        );
+        assert($bootEvents instanceof BootEvents);
 
-        return $bootEventRegistration;
+        return $bootEvents;
     }
 }

@@ -38,7 +38,7 @@ abstract readonly class ApplyRoutesEvent
         string $pattern,
         callable|string $callable,
     ): RouteInterface {
-        return $this->app->post($pattern, $callable);
+        return $this->app->put($pattern, $callable);
     }
 
     public function patch(

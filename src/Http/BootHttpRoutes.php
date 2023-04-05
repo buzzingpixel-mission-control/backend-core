@@ -45,6 +45,7 @@ readonly class BootHttpRoutes
 
         return new BootHttpMiddleware(
             $this->app,
+            $this->request,
             $this->eventDispatcher,
         );
     }

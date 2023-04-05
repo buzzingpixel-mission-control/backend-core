@@ -9,6 +9,7 @@ use MissionControlBackend\Http\BootHttpRoutes;
 use MissionControlBackend\Http\SlimHelpers\MissionControlCallableResolver;
 use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Silly\Application;
 use Slim\Factory\AppFactory;
 use Slim\Factory\ServerRequestCreatorFactory;
@@ -23,14 +24,15 @@ readonly class BootApplication
     ) {
     }
 
-    public function buildHttpApplication(): BootHttpRoutes
-    {
+    public function buildHttpApplication(
+        ServerRequestInterface|null $request = null,
+    ): BootHttpRoutes {
         $app = AppFactory::create(
             container: $this->container,
             callableResolver: $this->callableResolver,
         );
 
-        $request = ServerRequestCreatorFactory::create()
+        $request ??= ServerRequestCreatorFactory::create()
             ->createServerRequestFromGlobals();
 
         return new BootHttpRoutes(

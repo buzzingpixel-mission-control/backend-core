@@ -47,7 +47,7 @@ readonly class Boot
 
         if (mb_strtolower(PHP_SAPI) === 'cli') {
             $handler = new PlainTextHandler();
-        } elseif ($isJsonRequest) {
+        } elseif ($this->isJsonRequest()) {
             $handler = new JsonResponseHandler();
         } else {
             $handler = new PrettyPageHandler();
@@ -56,5 +56,12 @@ readonly class Boot
         $whoops->prependHandler($handler);
 
         $whoops->register();
+    }
+
+    private function isJsonRequest(): bool
+    {
+        return (new IsJsonRequest())->checkHttpAcceptString(
+            (string) ($_SERVER['HTTP_ACCEPT'] ?? ''),
+        );
     }
 }

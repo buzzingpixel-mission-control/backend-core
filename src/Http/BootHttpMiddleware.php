@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MissionControlBackend\Http;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 use Slim\App;
 
@@ -15,6 +16,7 @@ readonly class BootHttpMiddleware
 {
     public function __construct(
         private App $app,
+        private ServerRequestInterface $request,
         private EventDispatcherInterface $eventDispatcher,
     ) {
     }
@@ -22,17 +24,17 @@ readonly class BootHttpMiddleware
     public function applyMiddleware(
         BootHttpMiddlewareConfig $config,
     ): Run {
-        if ($config->useProductionErrorMiddleware) {
-            $this->applyProductionErrorMiddleware($config);
-        }
-
         $this->eventDispatcher->dispatch(new ApplyMiddlewareEvent(
             $this->app,
         ));
 
         $this->app->addBodyParsingMiddleware();
 
-        return new Run($this->app);
+        if ($config->useProductionErrorMiddleware) {
+            $this->applyProductionErrorMiddleware($config);
+        }
+
+        return new Run($this->app, $this->request);
     }
 
     private function applyProductionErrorMiddleware(
@@ -41,8 +43,7 @@ readonly class BootHttpMiddleware
         $logger = $config->productionErrorMiddlewareLogger;
 
         if (is_string($logger)) {
-            $logger = $this->app->getContainer()?->get($logger);
-            assert($logger instanceof LoggerInterface);
+            $logger = $this->getLoggerFromString($logger);
         }
 
         $errorMiddleware = $this->app->addErrorMiddleware(
@@ -59,5 +60,14 @@ readonly class BootHttpMiddleware
         $errorMiddleware->setDefaultErrorHandler(
             $config->customProductionErrorMiddlewareHandler,
         );
+    }
+
+    private function getLoggerFromString(string $loggerClass): LoggerInterface
+    {
+        $logger = $this->app->getContainer()?->get($loggerClass);
+
+        assert($logger instanceof LoggerInterface);
+
+        return $logger;
     }
 }
