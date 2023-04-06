@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Dependencies;
 
-use MissionControlBackend\Clock\SystemClock;
+use Lcobucci\Clock\SystemClock;
 use MissionControlBackend\ContainerBindings;
 use Psr\Clock\ClockInterface;
 
@@ -14,7 +14,7 @@ class RegisterClockBindings
     {
         $containerBindings->addBinding(
             ClockInterface::class,
-            SystemClock::class,
+            SystemClock::fromUTC(),
         );
     }
 }
