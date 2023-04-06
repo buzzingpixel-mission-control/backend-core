@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Cli;
 
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Silly\Application;
 use Silly\Command\Command;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
+
+use function is_string;
 
 // phpcs:disable SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification
 
@@ -13,6 +18,23 @@ readonly class ApplyCliCommandsEvent
 {
     public function __construct(private Application $app)
     {
+    }
+
+    /**
+     * @param Command|class-string<SymfonyCommand> $command
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function addSymfonyCommand(Command|string $command): SymfonyCommand
+    {
+        if (is_string($command)) {
+            /** @phpstan-ignore-next-line */
+            $command = $this->app->getContainer()->get($command);
+        }
+
+        /** @phpstan-ignore-next-line */
+        return $this->app->add($command);
     }
 
     /**
