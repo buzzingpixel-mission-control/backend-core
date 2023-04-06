@@ -15,6 +15,7 @@ class RegisterBindings
         RegisterBindingsDatabase::register($containerBindings);
         RegisterBindingsEvents::register($containerBindings);
         RegisterBindingsLogging::register($containerBindings);
+        RegisterBindingsMailer::register($containerBindings);
         RegisterBindingsPhinx::register($containerBindings);
         RegisterBindingsResponse::register($containerBindings);
         RegisterBindingsSlim::register($containerBindings);
