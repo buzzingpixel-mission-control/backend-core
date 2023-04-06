@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Events;
 
+use BuzzingPixel\Queue\Framework\QueueConsumeNextSymfonyCommand;
 use MissionControlBackend\Cli\ApplyCliCommandsEvent;
 use MissionControlBackend\Persistence\Migrations\MigrateCreateCommand;
 use MissionControlBackend\Persistence\Migrations\MigrateRollbackCommand;
@@ -18,5 +19,7 @@ class RegisterCliCommands
         MigrateRollbackCommand::register($event);
         MigrateStatusCommand::register($event);
         MigrateUpCommand::register($event);
+
+        $event->addSymfonyCommand(QueueConsumeNextSymfonyCommand::class);
     }
 }
