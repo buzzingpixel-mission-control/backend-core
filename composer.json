@@ -9,6 +9,7 @@
         "buzzingpixel/container": "^1.1",
         "buzzingpixel/minify-middleware": "^1.1",
         "buzzingpixel/php-queue": "^1.0",
+        "buzzingpixel/php-scheduler": "^1.0",
         "buzzingpixel/php-template-engine": "^1.0",
         "buzzingpixel/valueobject-ext": "^1.0",
         "crell/tukio": "^1.4",

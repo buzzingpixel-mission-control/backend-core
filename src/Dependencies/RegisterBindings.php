@@ -18,6 +18,7 @@ class RegisterBindings
         RegisterBindingsMailer::register($containerBindings);
         RegisterBindingsPhinx::register($containerBindings);
         RegisterBindingsResponse::register($containerBindings);
+        RegisterBindingsScheduler::register($containerBindings);
         RegisterBindingsSlim::register($containerBindings);
         RegisterClockBindings::register($containerBindings);
     }
