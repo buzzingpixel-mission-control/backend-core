@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MissionControlBackend\Http;
+namespace MissionControlBackend\Http\JsonResponse;
 
 use function explode;
 use function in_array;

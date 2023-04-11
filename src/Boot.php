@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MissionControlBackend;
 
-use MissionControlBackend\Http\IsJsonRequest;
+use MissionControlBackend\Http\JsonResponse\IsJsonRequest;
 use Whoops\Handler\JsonResponseHandler;
 use Whoops\Handler\PlainTextHandler;
 use Whoops\Handler\PrettyPageHandler;
