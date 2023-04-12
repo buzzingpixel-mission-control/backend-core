@@ -11,6 +11,7 @@ class RegisterBindings
     public static function register(ContainerBindings $containerBindings): void
     {
         RegisterBindingsCli::register($containerBindings);
+        RegisterBindingsCookies::register($containerBindings);
         RegisterBindingsCsrf::register($containerBindings);
         RegisterBindingsDatabase::register($containerBindings);
         RegisterBindingsEvents::register($containerBindings);
