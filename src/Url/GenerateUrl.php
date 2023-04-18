@@ -26,6 +26,6 @@ class GenerateUrl
             return $url;
         }
 
-        return $queryParams->asString();
+        return $url . '?' . $queryParams->asString();
     }
 }
