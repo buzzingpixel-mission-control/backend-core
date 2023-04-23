@@ -35,7 +35,10 @@ class RegisterBindingsCsrf
                     $responseFactory instanceof ResponseFactoryInterface,
                 );
 
-                return new Csrf($responseFactory);
+                return new Csrf(
+                    responseFactory: $responseFactory,
+                    persistentTokenMode: true,
+                );
             },
         );
     }
