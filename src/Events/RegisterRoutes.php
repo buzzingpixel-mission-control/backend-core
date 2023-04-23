@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Events;
 
+use MissionControlBackend\Api\Timezone\GetTimezoneListAction;
 use MissionControlBackend\Http\AccountApplyRoutesEvent;
 use MissionControlBackend\Http\ApiApplyRoutesEvent;
 use MissionControlBackend\Http\AuthApplyRoutesEvent;
@@ -19,6 +20,7 @@ class RegisterRoutes
     public function onApplyApiRoutes(ApiApplyRoutesEvent $event): void
     {
         GetVendorCssJs::registerRoute($event);
+        GetTimezoneListAction::registerRoute($event);
     }
 
     public function onApplyAuthRoutes(AuthApplyRoutesEvent $event): void
