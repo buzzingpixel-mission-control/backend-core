@@ -21,6 +21,11 @@ class RegisterEvents
         );
 
         $provider->addSubscriber(
+            RegisterMigrations::class,
+            RegisterMigrations::class,
+        );
+
+        $provider->addSubscriber(
             RegisterRoutes::class,
             RegisterRoutes::class,
         );
