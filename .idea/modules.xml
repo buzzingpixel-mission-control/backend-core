@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Mission Control Backend Core.iml" filepath="$PROJECT_DIR$/.idea/Mission Control Backend Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../idp/.idea/MissionControlIdp.iml" filepath="$PROJECT_DIR$/../idp/.idea/MissionControlIdp.iml" />
     </modules>
   </component>
 </project>

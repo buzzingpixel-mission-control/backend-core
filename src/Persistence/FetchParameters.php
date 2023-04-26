@@ -51,6 +51,26 @@ abstract readonly class FetchParameters
         );
     }
 
+    public function withLimit(int|null $limit): static
+    {
+        return $this->with(limit: $limit);
+    }
+
+    public function withOffset(int|null $offset): static
+    {
+        return $this->with(offset: $offset);
+    }
+
+    public function withOrderBy(string|null $orderBy): static
+    {
+        return $this->with(orderBy: $orderBy);
+    }
+
+    public function withSort(Sort|null $sort): static
+    {
+        return $this->with(sort: $sort);
+    }
+
     /** @param callable(): CustomQueryParams|null $buildCustomQuerySection */
     public function buildQuery(
         callable|null $buildCustomQuerySection = null,

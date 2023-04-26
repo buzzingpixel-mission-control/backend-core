@@ -7,7 +7,7 @@ namespace MissionControlBackend\Projects\Persistence;
 use Phinx\Db\Table;
 use Phinx\Migration\MigrationInterface;
 
-class ProjectsTable
+readonly class ProjectsTable
 {
     public const TABLE_NAME = 'projects';
 

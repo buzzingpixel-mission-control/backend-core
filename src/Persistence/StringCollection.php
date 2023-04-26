@@ -7,6 +7,7 @@ namespace MissionControlBackend\Persistence;
 use Spatie\Cloneable\Cloneable;
 
 use function array_map;
+use function array_merge;
 use function array_values;
 use function count;
 
@@ -37,6 +38,14 @@ class StringCollection
         return array_values(array_map(
             $callback,
             $this->strings,
+        ));
+    }
+
+    public function withString(string $string): static
+    {
+        return $this->with(strings: array_merge(
+            $this->strings,
+            [$string],
         ));
     }
 }

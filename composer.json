@@ -6,6 +6,7 @@
         "ext-oauth": "*",
         "ext-pdo": "*",
         "ext-redis": "*",
+        "beberlei/assert": "^3.3",
         "buzzingpixel/container": "^1.1",
         "buzzingpixel/minify-middleware": "^1.1",
         "buzzingpixel/php-queue": "^1.0",
