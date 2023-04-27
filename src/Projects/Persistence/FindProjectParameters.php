@@ -14,6 +14,11 @@ use function implode;
 
 readonly class FindProjectParameters extends FetchParameters
 {
+    public static function create(): self
+    {
+        return new self();
+    }
+
     public function __construct(
         public StringCollection|null $titles = null,
         public StringCollection|null $notTitles = null,

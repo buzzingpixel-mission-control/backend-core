@@ -56,6 +56,26 @@ readonly class ProjectRepository
         return Project::fromRecord($record);
     }
 
+    public function findOne(
+        FindProjectParameters|null $parameters = null,
+    ): Project {
+        return Project::fromRecord(
+            $this->findProjects->findOne($parameters),
+        );
+    }
+
+    public function findOneOrNull(
+        FindProjectParameters|null $parameters = null,
+    ): Project|null {
+        $record = $this->findProjects->findOneOrNull($parameters);
+
+        if ($record === null) {
+            return null;
+        }
+
+        return Project::fromRecord($record);
+    }
+
     public function findAll(
         FindProjectParameters|null $parameters = null,
     ): ProjectCollection {
