@@ -16,11 +16,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use function assert;
 use function is_string;
 
-readonly class PostArchiveProjectAction
+readonly class PatchUnArchiveProjectAction
 {
     public static function registerRoute(ApplyRoutesEvent $event): void
     {
-        $event->patch('/projects/archive/{projectId}', self::class)
+        $event->patch('/projects/un-archive/{projectId}', self::class)
             /** @phpstan-ignore-next-line */
             ->add(ResourceServerMiddlewareWrapper::class);
     }
@@ -46,7 +46,7 @@ readonly class PostArchiveProjectAction
             $this->responseFactory->createResponse(
                 $this->projectRepository->saveProject(
                     $project->with(isActive: IsActive::fromNative(
-                        false,
+                        true,
                     )),
                 ),
             ),

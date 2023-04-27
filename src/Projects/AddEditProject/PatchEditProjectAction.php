@@ -19,7 +19,7 @@ use function assert;
 use function is_array;
 use function is_string;
 
-readonly class PostEditProjectAction
+readonly class PatchEditProjectAction
 {
     public static function registerRoute(ApplyRoutesEvent $event): void
     {

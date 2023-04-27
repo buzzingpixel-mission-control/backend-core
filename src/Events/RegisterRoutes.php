@@ -8,10 +8,12 @@ use MissionControlBackend\Api\Timezone\GetTimezoneListAction;
 use MissionControlBackend\Http\AccountApplyRoutesEvent;
 use MissionControlBackend\Http\ApiApplyRoutesEvent;
 use MissionControlBackend\Http\AuthApplyRoutesEvent;
+use MissionControlBackend\Projects\AddEditProject\PatchArchiveProjectAction;
+use MissionControlBackend\Projects\AddEditProject\PatchEditProjectAction;
+use MissionControlBackend\Projects\AddEditProject\PatchUnArchiveProjectAction;
 use MissionControlBackend\Projects\AddEditProject\PostAddProjectAction;
-use MissionControlBackend\Projects\AddEditProject\PostArchiveProjectAction;
-use MissionControlBackend\Projects\AddEditProject\PostEditProjectAction;
 use MissionControlBackend\Projects\GetProjectsListAction;
+use MissionControlBackend\Projects\GetProjectsListArchivedAction;
 use MissionControlBackend\Templating\GetVendorCssJs;
 
 class RegisterRoutes
@@ -27,8 +29,10 @@ class RegisterRoutes
         GetTimezoneListAction::registerRoute($event);
         GetProjectsListAction::registerRoute($event);
         PostAddProjectAction::registerRoute($event);
-        PostEditProjectAction::registerRoute($event);
-        PostArchiveProjectAction::registerRoute($event);
+        PatchEditProjectAction::registerRoute($event);
+        PatchArchiveProjectAction::registerRoute($event);
+        GetProjectsListArchivedAction::registerRoute($event);
+        PatchUnArchiveProjectAction::registerRoute($event);
     }
 
     public function onApplyAuthRoutes(AuthApplyRoutesEvent $event): void
