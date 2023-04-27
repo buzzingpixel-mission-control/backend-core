@@ -34,6 +34,28 @@ readonly class ProjectRepository
         );
     }
 
+    public function findOneById(string $id): Project
+    {
+        return Project::fromRecord(
+            $this->findProjects->findOne(
+                (new FindProjectParameters())->withId($id),
+            ),
+        );
+    }
+
+    public function findOneByIdOrNull(string $id): Project|null
+    {
+        $record = $this->findProjects->findOneOrNull(
+            (new FindProjectParameters())->withId($id),
+        );
+
+        if ($record === null) {
+            return null;
+        }
+
+        return Project::fromRecord($record);
+    }
+
     public function findAll(
         FindProjectParameters|null $parameters = null,
     ): ProjectCollection {

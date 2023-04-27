@@ -9,6 +9,7 @@ use MissionControlBackend\Http\AccountApplyRoutesEvent;
 use MissionControlBackend\Http\ApiApplyRoutesEvent;
 use MissionControlBackend\Http\AuthApplyRoutesEvent;
 use MissionControlBackend\Projects\AddEditProject\PostAddProjectAction;
+use MissionControlBackend\Projects\AddEditProject\PostEditProjectAction;
 use MissionControlBackend\Projects\GetProjectsListAction;
 use MissionControlBackend\Templating\GetVendorCssJs;
 
@@ -25,6 +26,7 @@ class RegisterRoutes
         GetTimezoneListAction::registerRoute($event);
         GetProjectsListAction::registerRoute($event);
         PostAddProjectAction::registerRoute($event);
+        PostEditProjectAction::registerRoute($event);
     }
 
     public function onApplyAuthRoutes(AuthApplyRoutesEvent $event): void
