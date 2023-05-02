@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace MissionControlBackend\Projects\Persistence;
 
+use RuntimeException;
+
 use function array_map;
 use function array_values;
 use function count;
@@ -24,7 +26,13 @@ readonly class ProjectRecordCollection
 
     public function first(): ProjectRecord
     {
-        return $this->records[0];
+        $record = $this->firstOrNull();
+
+        if ($record === null) {
+            throw new RuntimeException('No record found');
+        }
+
+        return $record;
     }
 
     public function firstOrNull(): ProjectRecord|null
