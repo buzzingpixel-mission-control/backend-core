@@ -19,7 +19,7 @@ readonly class AppUrlGenerator implements UrlGenerator
         QueryParams|null $queryParams = null,
     ): string {
         return $this->generateUrl->fromBasePath(
-            $this->coreConfig->apiUrl,
+            $this->coreConfig->appUrl,
             $path,
             $queryParams,
         );
