@@ -22,5 +22,6 @@ class RegisterBindings
         RegisterBindingsScheduler::register($containerBindings);
         RegisterBindingsSlim::register($containerBindings);
         RegisterClockBindings::register($containerBindings);
+        RegisterBindingsSlack::register($containerBindings);
     }
 }
