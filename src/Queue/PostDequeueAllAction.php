@@ -10,15 +10,17 @@ use MissionControlIdp\Authorize\ResourceServerMiddlewareWrapper;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+use function assert;
+use function is_string;
 use function json_encode;
 
 use const JSON_PRETTY_PRINT;
 
-readonly class GetQueueListAction
+readonly class PostDequeueAllAction
 {
     public static function registerRoute(ApplyRoutesEvent $event): void
     {
-        $event->get('/queue/list', self::class)
+        $event->delete('/queue/dequeue/all/{queueName}', self::class)
             /** @phpstan-ignore-next-line */
             ->add(ResourceServerMiddlewareWrapper::class);
     }
@@ -31,13 +33,19 @@ readonly class GetQueueListAction
         ServerRequestInterface $request,
         ResponseInterface $response,
     ): ResponseInterface {
+        $queueName = $request->getAttribute('queueName');
+
+        assert(is_string($queueName));
+
+        $this->queueHandler->deQueueAllItems($queueName);
+
         $response = $response->withHeader(
             'Content-type',
             'application/json',
         );
 
         $response->getBody()->write((string) json_encode(
-            $this->queueHandler->getAvailableQueuesWithTotals(),
+            [],
             JSON_PRETTY_PRINT,
         ));
 

@@ -23,7 +23,7 @@ readonly class GetQueueDetailsByQueueNameAction
 {
     public static function registerRoute(ApplyRoutesEvent $event): void
     {
-        $event->any('/queue/{queueName}', self::class)
+        $event->get('/queue/{queueName}', self::class)
             /** @phpstan-ignore-next-line */
             ->add(ResourceServerMiddlewareWrapper::class);
     }

@@ -16,6 +16,8 @@ use MissionControlBackend\Projects\GetProjectDetails\GetProjectDetailsBySlugActi
 use MissionControlBackend\Projects\GetProjectsListAction;
 use MissionControlBackend\Projects\GetProjectsListArchivedAction;
 use MissionControlBackend\Queue\GetQueueListAction;
+use MissionControlBackend\Queue\PostDequeueAllAction;
+use MissionControlBackend\Queue\PostDequeueItemAction;
 use MissionControlBackend\Queue\QueueDetails\GetQueueDetailsByQueueNameAction;
 use MissionControlBackend\Templating\GetVendorCssJs;
 
@@ -30,9 +32,11 @@ class RegisterRoutes
     {
         GetVendorCssJs::registerRoute($event);
         GetQueueListAction::registerRoute($event);
+        PostDequeueAllAction::registerRoute($event);
         GetProjectsListAction::registerRoute($event);
         GetTimezoneListAction::registerRoute($event);
         PostAddProjectAction::registerRoute($event);
+        PostDequeueItemAction::registerRoute($event);
         PatchEditProjectAction::registerRoute($event);
         PatchArchiveProjectAction::registerRoute($event);
         PatchUnArchiveProjectAction::registerRoute($event);
