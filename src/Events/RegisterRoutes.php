@@ -19,6 +19,7 @@ use MissionControlBackend\Queue\GetQueueListAction;
 use MissionControlBackend\Queue\PostDequeueAllAction;
 use MissionControlBackend\Queue\PostDequeueItemAction;
 use MissionControlBackend\Queue\QueueDetails\GetQueueDetailsByQueueNameAction;
+use MissionControlBackend\Scheduler\GetScheduleList;
 use MissionControlBackend\Templating\GetVendorCssJs;
 
 class RegisterRoutes
@@ -31,6 +32,7 @@ class RegisterRoutes
     public function onApplyApiRoutes(ApiApplyRoutesEvent $event): void
     {
         GetVendorCssJs::registerRoute($event);
+        GetScheduleList::registerRoute($event);
         GetQueueListAction::registerRoute($event);
         PostDequeueAllAction::registerRoute($event);
         GetProjectsListAction::registerRoute($event);
