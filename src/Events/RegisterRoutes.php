@@ -15,6 +15,7 @@ use MissionControlBackend\Projects\AddEditProject\PostAddProjectAction;
 use MissionControlBackend\Projects\GetProjectDetails\GetProjectDetailsBySlugAction;
 use MissionControlBackend\Projects\GetProjectsListAction;
 use MissionControlBackend\Projects\GetProjectsListArchivedAction;
+use MissionControlBackend\Queue\GetQueueListAction;
 use MissionControlBackend\Templating\GetVendorCssJs;
 
 class RegisterRoutes
@@ -27,14 +28,15 @@ class RegisterRoutes
     public function onApplyApiRoutes(ApiApplyRoutesEvent $event): void
     {
         GetVendorCssJs::registerRoute($event);
-        GetTimezoneListAction::registerRoute($event);
+        GetQueueListAction::registerRoute($event);
         GetProjectsListAction::registerRoute($event);
+        GetTimezoneListAction::registerRoute($event);
         PostAddProjectAction::registerRoute($event);
         PatchEditProjectAction::registerRoute($event);
         PatchArchiveProjectAction::registerRoute($event);
-        GetProjectsListArchivedAction::registerRoute($event);
         PatchUnArchiveProjectAction::registerRoute($event);
         GetProjectDetailsBySlugAction::registerRoute($event);
+        GetProjectsListArchivedAction::registerRoute($event);
     }
 
     public function onApplyAuthRoutes(AuthApplyRoutesEvent $event): void
