@@ -6,6 +6,7 @@ namespace MissionControlBackend\Queue;
 
 use BuzzingPixel\Queue\QueueHandler;
 use MissionControlBackend\Http\ApplyRoutesEvent;
+use MissionControlIdp\Authorize\RequireAdminMiddleware;
 use MissionControlIdp\Authorize\ResourceServerMiddlewareWrapper;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -21,6 +22,8 @@ readonly class PostDequeueItemAction
     public static function registerRoute(ApplyRoutesEvent $event): void
     {
         $event->delete('/queue/dequeue/{key}', self::class)
+            /** @phpstan-ignore-next-line */
+            ->add(RequireAdminMiddleware::class)
             /** @phpstan-ignore-next-line */
             ->add(ResourceServerMiddlewareWrapper::class);
     }
