@@ -16,6 +16,7 @@ use MissionControlBackend\Projects\GetProjectDetails\GetProjectDetailsBySlugActi
 use MissionControlBackend\Projects\GetProjectsListAction;
 use MissionControlBackend\Projects\GetProjectsListArchivedAction;
 use MissionControlBackend\Queue\GetQueueListAction;
+use MissionControlBackend\Queue\QueueDetails\GetQueueDetailsByQueueNameAction;
 use MissionControlBackend\Templating\GetVendorCssJs;
 
 class RegisterRoutes
@@ -37,6 +38,7 @@ class RegisterRoutes
         PatchUnArchiveProjectAction::registerRoute($event);
         GetProjectDetailsBySlugAction::registerRoute($event);
         GetProjectsListArchivedAction::registerRoute($event);
+        GetQueueDetailsByQueueNameAction::registerRoute($event);
     }
 
     public function onApplyAuthRoutes(AuthApplyRoutesEvent $event): void
