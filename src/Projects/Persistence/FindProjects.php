@@ -6,6 +6,7 @@ namespace MissionControlBackend\Projects\Persistence;
 
 use MissionControlBackend\Persistence\MissionControlPdo;
 use PDO;
+use Throwable;
 
 readonly class FindProjects
 {
@@ -36,23 +37,25 @@ readonly class FindProjects
     public function findAll(
         FindProjectParameters|null $parameters = null,
     ): ProjectRecordCollection {
-        $parameters ??= new FindProjectParameters();
+        try {
+            $parameters ??= new FindProjectParameters();
 
-        $customQuery = $parameters->buildQuery();
+            $customQuery = $parameters->buildQuery();
 
-        $statement = $this->pdo->prepare($customQuery->query);
+            $statement = $this->pdo->prepare($customQuery->query);
 
-        $statement->execute($customQuery->params);
+            $statement->execute($customQuery->params);
 
-        $results = $statement->fetchAll(
-            PDO::FETCH_CLASS,
-            ProjectRecord::class,
-        );
+            $results = $statement->fetchAll(
+                PDO::FETCH_CLASS,
+                ProjectRecord::class,
+            );
 
-        if ($results === false) {
+            return new ProjectRecordCollection(
+                $results !== false ? $results : [],
+            );
+        } catch (Throwable) {
             return new ProjectRecordCollection();
         }
-
-        return new ProjectRecordCollection($results);
     }
 }
