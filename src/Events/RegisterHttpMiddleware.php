@@ -6,6 +6,7 @@ namespace MissionControlBackend\Events;
 
 use BuzzingPixel\Minify\MinifyMiddleware;
 use HttpSoft\Cookie\CookieSendMiddleware;
+use MissionControlBackend\ErrorLogging\ErrorLoggingMiddleware;
 use MissionControlBackend\Http\ApplyMiddlewareEvent;
 
 class RegisterHttpMiddleware
@@ -15,5 +16,8 @@ class RegisterHttpMiddleware
         $event->add(CookieSendMiddleware::class);
 
         $event->add(MinifyMiddleware::class);
+
+        // This should probably be last
+        $event->add(ErrorLoggingMiddleware::class);
     }
 }
