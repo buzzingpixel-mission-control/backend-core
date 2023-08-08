@@ -39,6 +39,18 @@ abstract readonly class FetchParameters
         );
     }
 
+    /** @param string[] $ids */
+    public function withIds(array $ids): static
+    {
+        $newIds = $this->ids ?? new StringCollection();
+
+        foreach ($ids as $id) {
+            $newIds = $newIds->withString($id);
+        }
+
+        return $this->with(ids: $newIds);
+    }
+
     public function withNotId(string $notId): static
     {
         $notIds = $this->notIds ?? new StringCollection();
