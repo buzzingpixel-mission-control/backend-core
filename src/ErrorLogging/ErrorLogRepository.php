@@ -6,6 +6,7 @@ namespace MissionControlBackend\ErrorLogging;
 
 use MissionControlBackend\ActionResult;
 use MissionControlBackend\ErrorLogging\Persistence\CreateErrorLog;
+use MissionControlBackend\ErrorLogging\Persistence\DeleteErrorLog;
 use MissionControlBackend\ErrorLogging\Persistence\ErrorLogRecord;
 use MissionControlBackend\ErrorLogging\Persistence\FindErrorLogParameters;
 use MissionControlBackend\ErrorLogging\Persistence\FindErrorLogs;
@@ -17,6 +18,7 @@ readonly class ErrorLogRepository
         private SaveErrorLog $save,
         private FindErrorLogs $find,
         private CreateErrorLog $create,
+        private DeleteErrorLog $delete,
     ) {
     }
 
@@ -65,5 +67,10 @@ readonly class ErrorLogRepository
                 $record,
             ),
         ));
+    }
+
+    public function delete(ErrorLog $errorLog): ActionResult
+    {
+        return $this->delete->deleteById($errorLog->id->toNative());
     }
 }
