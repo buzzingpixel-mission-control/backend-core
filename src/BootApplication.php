@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace MissionControlBackend;
 
 use MissionControlBackend\Cli\BootCommands;
+use MissionControlBackend\ErrorLogging\ErrorLogFactory;
+use MissionControlBackend\ErrorLogging\SaveErrorLogFactory;
 use MissionControlBackend\Http\BootHttpRoutes;
 use MissionControlBackend\Http\SlimHelpers\MissionControlCallableResolver;
 use Psr\Container\ContainerInterface;
@@ -13,6 +15,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Silly\Application;
 use Slim\Factory\AppFactory;
 use Slim\Factory\ServerRequestCreatorFactory;
+
+use function assert;
 
 readonly class BootApplication
 {
@@ -49,8 +53,17 @@ readonly class BootApplication
 
         $app->useContainer(container: $this->container);
 
+        $errorLogFactory = $this->container->get(ErrorLogFactory::class);
+        assert($errorLogFactory instanceof ErrorLogFactory);
+
+        $saveErrorLogFactory = $this->container->get(SaveErrorLogFactory::class);
+        assert($saveErrorLogFactory instanceof SaveErrorLogFactory);
+
         return new BootCommands(
             $app,
+            $this->coreConfig,
+            $errorLogFactory,
+            $saveErrorLogFactory,
             $this->eventDispatcher,
         );
     }
