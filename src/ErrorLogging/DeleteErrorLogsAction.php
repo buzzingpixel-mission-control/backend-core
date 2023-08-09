@@ -13,14 +13,13 @@ use MissionControlIdp\Authorize\ResourceServerMiddlewareWrapper;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-use function assert;
-use function is_string;
+use function json_decode;
 
-readonly class DeleteErrorLogAction
+readonly class DeleteErrorLogsAction
 {
     public static function registerRoute(ApplyRoutesEvent $event): void
     {
-        $event->delete('/error-logs/{id}', self::class)
+        $event->delete('/error-logs', self::class)
             /** @phpstan-ignore-next-line */
             ->add(RequireAdminMiddleware::class)
             /** @phpstan-ignore-next-line */
@@ -38,17 +37,29 @@ readonly class DeleteErrorLogAction
         ServerRequestInterface $request,
         ResponseInterface $response,
     ): ResponseInterface {
-        $id = $request->getAttribute('id');
-        assert(is_string($id));
+        /**
+         * @var string[] $errorLogIds
+         * @phpstan-ignore-next-line
+         */
+        $errorLogIds = json_decode(
+            (string) $request->getBody(),
+            true,
+        )['errorLogIds'] ?? [];
 
-        $item = $this->repository->findOne(
-            FindErrorLogParameters::create()
-                ->withId($id),
-        );
+        /**
+         * Placeholder to prevent empty array from acting on every single item
+         * If an empty array is provided to find all, all items will be found
+         */
+        $errorLogIds[] = '8a417645-72dd-45e3-9e7e-5dde5cf8f18c';
 
         return $this->jsonResponder->respond(
             $this->responseFactory->createResponse(
-                $this->repository->delete($item),
+                $this->repository->deleteCollection(
+                    $this->repository->findAll(
+                        FindErrorLogParameters::create()
+                            ->withIds($errorLogIds),
+                    ),
+                ),
             ),
         );
     }

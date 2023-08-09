@@ -46,4 +46,13 @@ class ErrorLogCollection
         /** @phpstan-ignore-next-line */
         return $this->map(static fn (ErrorLog $e) => $e->asArray());
     }
+
+    /** @return string[] */
+    public function pluckIds(): array
+    {
+        /** @phpstan-ignore-next-line */
+        return $this->map(
+            static fn (ErrorLog $l) => $l->id->toNative()
+        );
+    }
 }
