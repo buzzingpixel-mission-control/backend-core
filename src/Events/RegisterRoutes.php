@@ -7,6 +7,7 @@ namespace MissionControlBackend\Events;
 use MissionControlBackend\Api\Timezone\GetTimezoneListAction;
 use MissionControlBackend\ErrorLogging\DeleteErrorLogAction;
 use MissionControlBackend\ErrorLogging\DeleteErrorLogsAction;
+use MissionControlBackend\ErrorLogging\GetDetails\GetErrorLogDetailsByIdAction;
 use MissionControlBackend\ErrorLogging\GetErrorLogsListAction;
 use MissionControlBackend\Http\AccountApplyRoutesEvent;
 use MissionControlBackend\Http\ApiApplyRoutesEvent;
@@ -51,6 +52,7 @@ class RegisterRoutes
         GetProjectsListArchivedAction::registerRoute($event);
         GetQueueDetailsByQueueNameAction::registerRoute($event);
         DeleteErrorLogAction::registerRoute($event);
+        GetErrorLogDetailsByIdAction::registerRoute($event);
     }
 
     public function onApplyAuthRoutes(AuthApplyRoutesEvent $event): void
